@@ -1,0 +1,21 @@
+Pract 11 - a
+
+Download mongodb tools and set the bin path in environment variables
+https://www.mongodb.com/try/download/database-tools
+
+Have some data inserted into the collection.
+
+mongoexport --db admin --collection users --out users.json --jsonArray
+
+## Using filters
+mongoexport --db myDatabase --collection myCollection --out output.json --jsonArray --query '{"age": {"$gte": 30}}'
+
+mongoexport --db myDatabase --collection myCollection --out output.json --jsonArray --fields name,email
+
+Pract 11 - b
+
+db.myCollection.deleteOne({ name: "test 2" });
+
+db.myCollection.deleteMany({ age: { $lt: 30 } });
+
+You can indlude all your delete and remove commands

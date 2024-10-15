@@ -1,0 +1,22 @@
+mongosh
+
+-->use myDatabase
+
+-->db.createCollection("books")
+
+-->db.books.insert([{ Title: "MongoDb", price: 200, type: "ebook"},{Title: "Java", price: 290, type:"ebook"}, { Title: "Web Design", price: 500, type: "Hardcover"},{Title: "Android", price: 350, type: "online"}])
+-->db.books.aggregate([{$group:{_id:"$Type", category: {$sum:1}}}])
+-->db.books.aggregate([{$group: {_id: "$type", category: {$sum:1}}}])
+--> db.books.aggregate([{$group: {_id: "$type", max_price: {$max: "$price"}}}])
+-->db.books.aggregate([{$group: {_id: "$type", min_price: {$min: "$price"}}}])
+-->db.books.aggregate([{$group: {_id: "$type", avg_price: {$avg: "$price"}}}])
+--> db.books.aggregate([{$group: {_id: "$type", category:{$sum: "$price"}}}])
+db.books.updateOne({title: "Python"}, {$addToSet: {unites:10}})
+-------------------------------------------------------------------------------------------
+push and add
+--> db.books. insertOne({title:"HTML", price: 985, type: "Hardcopy"})
+-->  db.books.updateOne({title:"HTML"}, {$push: {publication:"techknowledge"}})
+------------------------------------------------------------------------------------------------
+first and last
+--> db.books.aggregate([{$group: {_id: "$type", first_data:{$first: "$price"}}}])
+--> db.books.aggregate([{$group: {_id: "$type", last_data:{$last: "$Title"}}}])
